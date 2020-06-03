@@ -1,0 +1,29 @@
+{
+  "name": "electron-app-topgo-alarm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycrao/electron-app-topgo-alarm.git"
+  },
+  "keywords": [
+    "topgo",
+    "electron",
+    "gold",
+    "alarm"
+  ],
+  "author": "raoyc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ycrao/electron-app-topgo-alarm/issues"
+  },
+  "homepage": "https://github.com/ycrao/electron-app-topgo-alarm#readme",
+  "devDependencies": {
+    "electron": "^9.0.2"
+  }
+}
