@@ -1,4 +1,9 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Notification } = require('electron')
+
+const isDarwin = process.platform === 'darwin';
+const isLinux = process.platform === 'linux';
+const isWindows = process.platform === 'win32';
+let image = __dirname + '/icon.png'
 
 function createWindow () {
   // 创建浏览器窗口
@@ -18,6 +23,13 @@ function createWindow () {
 // Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法
 // 部分 API 在 ready 事件触发后才能使用。
 app.whenReady().then(createWindow)
+
+app.on('ready', () => {
+  if (isDarwin) {
+    app.dock.hide()
+  }
+  showMsg('测试', '这是一条测试信息')
+})
 
 //当所有窗口都被关闭后退出
 app.on('window-all-closed', () => {
@@ -39,3 +51,16 @@ app.on('activate', () => {
 // 您可以把应用程序其他的流程写在在此文件中
 // 代码 也可以拆分成几个文件，然后用 require 导入。
 
+function showMsg(title, body) {
+  if (title || body) {
+    msg = new Notification({
+      title: title,
+      body: body + '\n' + new Date().toLocaleString(),
+      icon: image
+    })
+  }
+  if (msg != null) {
+    console.info("Message: " + msg.body)
+    msg.show()
+  }
+}
