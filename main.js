@@ -1,4 +1,4 @@
-const { app, nativeImage, Tray, net, Notification } = require('electron')
+const { app, nativeImage, Tray, net, Notification, Menu } = require('electron')
 const { createCanvas } = require('canvas')
 
 let tray = null
@@ -6,6 +6,10 @@ const iconImage = './icon.png'
 
 app.on('ready', () => {
   tray = new Tray(iconImage)
+  contextMenu = Menu.buildFromTemplate([
+    { label: 'Exit', role: 'quit' }
+  ])
+  tray.setContextMenu(contextMenu)
   tray.setToolTip('Gold Price Listener')
   var count = 0
   setInterval(() => {
