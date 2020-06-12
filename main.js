@@ -5,6 +5,9 @@ let tray = null
 const iconImage = './icon.png'
 
 app.on('ready', () => {
+  if (process.platform === 'darwin') {
+    app.dock.setIcon(iconImage);
+  }
   tray = new Tray(iconImage)
   contextMenu = Menu.buildFromTemplate([
     { label: 'Exit', role: 'quit' }

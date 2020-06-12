@@ -34,5 +34,10 @@
   },
   "dependencies": {
     "canvas": "^2.6.1"
+  },
+  "build": {
+    "linux": {
+      "icon": "dist/icons"
+    }
   }
 }
