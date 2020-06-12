@@ -1,62 +1,77 @@
-const { app, BrowserWindow, Notification } = require('electron')
+const { app, nativeImage, Tray, net, Notification } = require('electron')
+const { createCanvas } = require('canvas')
 
-const isDarwin = process.platform === 'darwin';
-const isLinux = process.platform === 'linux';
-const isWindows = process.platform === 'win32';
-let image = __dirname + '/icon.png'
-
-function createWindow () {
-  // 创建浏览器窗口
-  let win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  })
-  // 并且为你的应用加载index.html
-  win.loadFile('index.html')
-  // 打开开发者工具
-  win.webContents.openDevTools()
-}
-
-// Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法
-// 部分 API 在 ready 事件触发后才能使用。
-app.whenReady().then(createWindow)
+let tray = null
+const iconImage = './icon.png'
 
 app.on('ready', () => {
-  if (isDarwin) {
-    app.dock.hide()
-  }
-  showMsg('测试', '这是一条测试信息')
+  tray = new Tray(iconImage)
+  tray.setToolTip('Gold Price Listener')
+  var count = 0
+  setInterval(() => {
+    if (count++ % 2 == 0) {
+      handleRequest('xau')
+    } else {
+      handleRequest('autd')
+    }
+  }, 1000*10)
 })
 
-//当所有窗口都被关闭后退出
-app.on('window-all-closed', () => {
-  // 在 macOS 上，除非用户用 Cmd + Q 确定地退出，
-  // 否则绝大部分应用及其菜单栏会保持激活。
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
 
-app.on('activate', () => {
-  // 在macOS上，当单击dock图标并且没有其他窗口打开时，
-  // 通常在应用程序中重新创建一个窗口。
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
-  }
-})
+function getBase64ImageDataUrl(price) {
+  const canvas = createCanvas(96, 96)
+  // Copy the image contents to the canvas
+  const ctx = canvas.getContext('2d')
+  ctx.font = 'BOLD 32px LcdD'
+  // ctx.textAlign = 'left'
+  ctx.textBaseline = 'middle'
+  ctx.fillStyle = 'yellow'
+  ctx.fillText(price, 0, 44)
+  // Get the data-URL formatted image
+  // Firefox supports PNG and JPEG. You could check img.src to
+  // guess the original format, but be aware the using "image/jpg"
+  // will re-encode the image.
+  const dataURL = canvas.toDataURL('image/png')
+  return dataURL
+}
 
-// 您可以把应用程序其他的流程写在在此文件中
-// 代码 也可以拆分成几个文件，然后用 require 导入。
+function handleRequest(symbol) {
+  var url = tip = null;
+  if (symbol === 'xau') {
+    url = "https://hq.sinajs.cn/?_=" + Date.now() + "/&list=gds_AUTD"
+    tip = ' usd/oz'
+  } else {
+    url = "https://hq.sinajs.cn/?_=" + Date.now() + "/&list=hf_XAU"
+    tip = ' cny/g'
+  }
+  const request = net.request(url)
+  request.on('response', (response) => {
+    // console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
+    response.on('data', (chunk) => {
+      var respStr = chunk.toString().replace('var hq_str_gds_AUTD="', '')
+      respStr = respStr.replace('var hq_str_hf_XAU="', '')
+      respStr = respStr.replace('"', '')
+      var prices = respStr.split(',')
+      var goldPrice = prices[0]
+      var imageDataURL = getBase64ImageDataUrl(goldPrice)
+      var dataURLImage = nativeImage.createFromDataURL(imageDataURL)
+      tray.setImage(dataURLImage)
+      tray.setToolTip(symbol + ': ' + goldPrice + tip)
+      // showMsg('金价提醒', symbol + ': ' + goldPrice + tip)
+    })
+    response.on('end', () => {
+      // console.log('No more data in response.')
+    })
+  })
+  request.end()
+}
 
 function showMsg(title, body) {
   if (title || body) {
     msg = new Notification({
       title: title,
       body: body + '\n' + new Date().toLocaleString(),
-      icon: image
+      icon: iconImage,
     })
   }
   if (msg != null) {

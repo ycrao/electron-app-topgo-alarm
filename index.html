@@ -7,5 +7,26 @@
 </head>
 <body>
     <h1>Electron App Topgo Alarm</h1>
+    <canvas id="myCanvas" width="48" height="48"></canvas>
+    <script>
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+
+ctx.fillStyle = 'red'
+ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+// set the text
+// ctx.font = 'Bold 11.6px Fira Code'
+ctx.font = 'BOLD 16px LcdD'
+// UniDreamLED
+// ctx.textAlign = 'left'
+ctx.textBaseline = 'middle'
+ctx.fillStyle = 'yellow'  // a color name or by using rgb/rgba/hex values
+ctx.fillText('1234.65', 0, 22)  // text and position
+// ctx.fillText('XAU$/oz', 2, 32)
+url = canvas.toDataURL("image/png")
+
+console.log(url)
+    </script>
 </body>
 </html>

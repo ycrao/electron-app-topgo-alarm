@@ -24,6 +24,10 @@
   },
   "homepage": "https://github.com/ycrao/electron-app-topgo-alarm#readme",
   "devDependencies": {
-    "electron": "^9.0.2"
+    "electron": "^9.0.2",
+    "electron-rebuild": "^1.11.0"
+  },
+  "dependencies": {
+    "canvas": "^2.6.1"
   }
 }
