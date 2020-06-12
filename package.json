@@ -5,7 +5,11 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "build_mac": "electron-builder build --mac",
+    "build_win": "electron-builder build --win",
+    "build_linux": "electron-builder build --linux"
   },
   "repository": {
     "type": "git",
@@ -25,7 +29,8 @@
   "homepage": "https://github.com/ycrao/electron-app-topgo-alarm#readme",
   "devDependencies": {
     "electron": "^9.0.2",
-    "electron-rebuild": "^1.11.0"
+    "electron-rebuild": "^1.11.0",
+    "electron-builder": "^22.7.0"
   },
   "dependencies": {
     "canvas": "^2.6.1"
