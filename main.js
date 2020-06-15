@@ -26,14 +26,14 @@ app.on('ready', () => {
 
 
 function getBase64ImageDataUrl(price) {
-  const canvas = createCanvas(96, 96)
+  const canvas = createCanvas(96, 48)
   // Copy the image contents to the canvas
   const ctx = canvas.getContext('2d')
   ctx.font = 'BOLD 32px LcdD'
   // ctx.textAlign = 'left'
   ctx.textBaseline = 'middle'
   ctx.fillStyle = 'yellow'
-  ctx.fillText(price, 0, 44)
+  ctx.fillText(price, 0, 20)
   // Get the data-URL formatted image
   // Firefox supports PNG and JPEG. You could check img.src to
   // guess the original format, but be aware the using "image/jpg"
