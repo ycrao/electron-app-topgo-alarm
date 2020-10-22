@@ -18,14 +18,16 @@
 ```bash
 git clone https://github.com/ycrao/electron-app-topgo-alarm.git
 cd electron-app-topgo-alarm
+# 安装依赖
 npm install
-npm run dev
+# 本地开发
+npm run start
 # 编译 mac 二进制文件 [已验证过]
 npm run build_mac
 # 编译 linux 下二进制文件 [已验证过]
 npm run build_linux
 # 该命令暂未验证，是否能成功编译出二进制可执行安装文件，有编译过的，存在问题可反馈
-npm run build_win 
+npm run build_win
 ```
 
 
