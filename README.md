@@ -50,4 +50,4 @@ npm install --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canv
 
 #### 3. 尝试各种办法都安装编译失败？
 
-> 请下载作者已编译好的二进制文件，目前仅提供 `macOS` 与 `Linux` （仅在 `macOS Mojave` 和 `Ubuntu 16.04 LTS` 环境下经过验证，其它环境请自行验证）操作系统下二进制文件。
+> 请下载作者已编译好的二进制文件，目前仅提供 `macOS` 与 `Linux` （仅在 `macOS Mojave` 和 `Ubuntu 16.04 LTS` 环境下经过验证，其它环境请自行验证）操作系统下 [二进制文件](https://github.com/ycrao/electron-app-topgo-alarm/releases) 。
