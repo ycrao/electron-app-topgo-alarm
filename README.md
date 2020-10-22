@@ -4,7 +4,12 @@
 
 ### Screenshot / 截图
 
+- `Linux Ubuntu` 环境下运行截图:
+
 ![linux_snap_1.png](linux_snap_1.png)
+
+- `Mac` 环境下运行截图:
+
 ![mac_snap_2@2x.png](mac_snap_2@2x.png)
 
 ### Reference / 参考资料
