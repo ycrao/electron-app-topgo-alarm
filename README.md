@@ -1,5 +1,13 @@
 # electron-app-topgo-alarm
 
+> 在任务栏提醒金价的小工具，目前仅显示 XAU/国际黄金 与 AUTD/上海黄金延期 价格，实时价格来源于新浪财经。
+
+### Screenshot / 截图
+
+<center>
+![linux_snap_1.png](linux_snap_1.png)
+</center>
+
 ### Reference / 参考资料
 
 - [Official/官网](https://www.electronjs.org/)
@@ -27,7 +35,7 @@ npm run build_win
 
 #### 1. 下载依赖缓慢超时
 
-> 可以考虑使用 [淘宝镜像](https://developer.aliyun.com/mirror/NPM?from=tnpm) ，如果还有非 `canvas` 依赖（如`node-sass`）错误，可参考 [安装 node-sass 的正确姿势](https://github.com/lmk123/blog/issues/28)
+> 可以考虑使用 [淘宝镜像](https://developer.aliyun.com/mirror/NPM?from=tnpm) ，如果还有非 `canvas` 依赖（如`node-sass`）错误，可参考 [安装 node-sass 的正确姿势](https://github.com/lmk123/blog/issues/28) 文章。
 
 ```bash
 npm install --registry=https://registry.npm.taobao.org
