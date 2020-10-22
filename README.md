@@ -26,7 +26,7 @@ npm run start
 npm run build_mac
 # 编译 linux 下二进制文件 [已验证过]
 npm run build_linux
-# 该命令暂未验证，是否能成功编译出二进制可执行安装文件，有编译过的，存在问题可反馈
+# 该命令暂未验证，是否能成功编译出二进制可执行安装文件，有编译成功过或存在问题的可反馈到 issue 中
 npm run build_win
 ```
 
