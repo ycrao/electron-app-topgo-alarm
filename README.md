@@ -4,9 +4,7 @@
 
 ### Screenshot / 截图
 
-<center>
 ![linux_snap_1.png](linux_snap_1.png)
-</center>
 
 ### Reference / 参考资料
 
