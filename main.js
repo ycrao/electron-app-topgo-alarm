@@ -1,4 +1,4 @@
-const { app, nativeImage, Tray, net, Notification, Menu } = require('electron')
+const { app, shell, nativeImage, Tray, net, Notification, Menu } = require('electron')
 const { createCanvas } = require('canvas')
 
 let tray = null
@@ -14,11 +14,25 @@ app.on('ready', () => {
     app.dock.setIcon(iconImage);
   }
   tray = new Tray(icon)
+  const handleClick = (menuItem) => {
+    // console.log(menuItem)
+    url = 'https://chart.tubiaojia.com/tubiaojia.html?symbol=' + menuItem.label
+    shell.openExternal(url)
+  }
   contextMenu = Menu.buildFromTemplate([
+    { label: 'XAUUSD', click: handleClick },  // https://chart.tubiaojia.com/tubiaojia.html?symbol=XAUUSD
+    { label: 'Au(T+D)', click: handleClick },  // https://chart.tubiaojia.com/tubiaojia.html?symbol=Au(T+D)
+    { label: 'XAGUSD', click: handleClick },  // https://chart.tubiaojia.com/tubiaojia.html?symbol=XAGUSD 
+    { label: 'Ag(T+D)', click: handleClick },  // https://chart.tubiaojia.com/tubiaojia.html?symbol=Ag(T+D)
+    { label: 'USDIDX', click: handleClick },  // https://chart.tubiaojia.com/tubiaojia.html?symbol=USDIDX
+    { type:'separator' },
     { label: 'Exit', role: 'quit' }
   ])
   tray.setContextMenu(contextMenu)
   tray.setToolTip('Gold Price Listener')
+  tray.on('click', () => {
+    tray.popUpContextMenu(contextMenu)
+  })
   var count = 0
   setInterval(() => {
     if (count++ % 2 == 0) {
