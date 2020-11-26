@@ -34,6 +34,7 @@ npm run build_mac
 npm run build_linux
 # 该命令暂未验证，是否能成功编译出二进制可执行安装文件，有编译成功过或存在问题的可反馈到 issue 中
 npm run build_win
+# 不建议在 Windows 下编译使用，因为任务栏 Tray 图标太小，不能看清楚，后期统一使用悬浮窗
 ```
 
 
