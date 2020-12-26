@@ -1,5 +1,7 @@
 # electron-app-topgo-alarm
 
+已归档不再维护，请改用本人 `Golang` 编写的程序：[PriceReminder](https://github.com/ycrao/learning_golang/tree/main/imgui-price-reminder)，源码编译支持 `Windows/MacOS/Linux` 。
+
 > 在任务栏提醒金价的小工具，目前仅显示 `XAU/国际黄金` (单位：美元/盎司） 与 `AUTD/上海黄金延期` （单位：人民币元/每克）价格，实时价格来源于新浪财经。
 
 ### Screenshot / 截图
